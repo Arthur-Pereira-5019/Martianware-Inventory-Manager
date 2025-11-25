@@ -16,6 +16,7 @@
         * {
             color: lime;
             font-size: 16px;
+            font-family: sans-serif;
         }
         #container_geral {
             display: flex;
@@ -49,7 +50,7 @@
         #container_info {
             display: flex;
             flex-direction:column;
-            width: 30vw;
+            width: fit-content;
         }
 
         h1 {
@@ -63,9 +64,21 @@
         }
 
         button {
-            width: 15%;
-            border: 1px solid lime;
-            background-color: rgb(109, 109, 109);
+            width: 40%;
+            border: 1px solid rgb(0, 161, 0);
+            background-color: rgb(58, 58, 58);
+            color: rgb(0, 161, 0);
+            cursor: pointer;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
+        }
+
+        button:hover {
+            border: 1px solid rgb(0, 255, 0);
+            background-color: rgb(189, 189, 189);
+            color: rgb(0, 255, 0);
+            
         }
 
     </style>
