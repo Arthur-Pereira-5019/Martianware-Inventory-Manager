@@ -1,36 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <?php
-    session_start();
-  
-    if (isset($_GET['error'])) {
-        switch ($_GET['error']) {
-            case 'invalid_credentials':
-                echo '<h2 style="color:red; text-align:center;">Invalid username or password.</h2>';
-                break;
-        }
-    }
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-    if (isset($_GET['success']) && $_GET['success'] === 'true') {
-        header("Location: index.php");
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+require 'banco.php';
+header('Content-Type: application/json');
+session_start();
+
+if (!(isset($_POST['loginquery']))) {
+    echo json_encode(['status' => 'bad_request', 'message' => 'Requisição inválida!']);
+    exit();
+}
+$loginquery = $_POST['loginquery'];
+$loginobject = json_decode($loginquery);
+
+if ($loginquery->name === "admin" && $loginquery->password === "adminpassword") {
+    echo json_encode(['status' => 'ok', 'message' => $username . 'Logado com sucesso!']);
+    session_start();
+    $_SESSION['username'] = $username;
+    exit();
+} else {
+    $user = get_usuario_name($loginquery->name);
+    if ($user['password'] == $loginquery->password) {
+        echo json_encode(['status' => 'ok', 'message' => $username . 'Logado com sucesso!']);
+        session_start();
+        $_SESSION['username'] = $username;
+        exit();
+    } else {
+        echo json_encode(['status' => 'bad_request', 'message' => 'Usuário não encontrado, verifique suas credenciais!']);
         exit();
     }
-    ?>
-<body>
-    <h2>Login</h2>
-    <form action = 'autenticacao.php' method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name = "username" required>
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name = "password" required>
-        <br><br>
-        <input type="submit" value="Login">
-</form>
-</body>
-</html>
+}

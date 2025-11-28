@@ -71,7 +71,7 @@
         margin-bottom: 0px;
     }
 
-        h2 {
+    h2 {
         font-size: 2vw;
     }
 
@@ -132,15 +132,28 @@
             <button id="return">Voltar</button>
         </div>
     </div>
-     <script>
+    <script>
+        passwordField = document.querySelector("#password")
+        nameField = document.querySelector("#nome")
+
         btnSignup = document.querySelector("#signup")
         btnReturn = document.querySelector("#return")
-        
-        btnReturn.addEventListener("click", function() {
+
+        btnReturn.addEventListener("click", function () {
             window.location.pathname = "client"
         })
-        btnSignup.addEventListener("click", function() {
-
+        btnSignup.addEventListener("click", function () {
+            requestBody = {
+                "name": nameField.textContent,
+                "password": passwordField.textContent
+            }
+            fetch("localhost:80/server/login.php"), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }.then(res => { console.log(res) })
         })
     </script>
 

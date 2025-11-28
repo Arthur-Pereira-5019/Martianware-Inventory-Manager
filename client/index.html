@@ -134,14 +134,27 @@
         </div>
     </div>
     <script>
+                passwordField = document.querySelector("#password")
+        nameField = document.querySelector("#nome")
+
         btnLogin = document.querySelector("#access")
         btnSignup = document.querySelector("#signup")
-        
-        btnSignup.addEventListener("click", function() {
+
+        btnSignup.addEventListener("click", function () {
             window.location.pathname = "client/signup.html"
         })
-        btnLogin.addEventListener("click", function() {
-
+        btnLogin.addEventListener("click", function () {
+            requestBody = {
+                "name": nameField.value,
+                "password": passwordField.value
+            }
+            fetch("http://localhost:80/server/login.php", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            }).then(res => { console.log(res) })
         })
     </script>
 </body>
