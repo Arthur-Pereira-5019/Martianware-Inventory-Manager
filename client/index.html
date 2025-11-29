@@ -134,7 +134,7 @@
         </div>
     </div>
     <script>
-                passwordField = document.querySelector("#password")
+        passwordField = document.querySelector("#password")
         nameField = document.querySelector("#nome")
 
         btnLogin = document.querySelector("#access")
@@ -145,16 +145,18 @@
         })
         btnLogin.addEventListener("click", function () {
             requestBody = {
+                "type":"logar",
                 "name": nameField.value,
                 "password": passwordField.value
             }
-            fetch("http://localhost:80/server/login.php", {
+            fetch("http://localhost:80/server/controller.php", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(requestBody),
-            }).then(res => { console.log(res) })
+            }).then(res => { return res.text()
+            }).then(data => console.log(data))
         })
     </script>
 </body>

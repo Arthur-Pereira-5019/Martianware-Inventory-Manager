@@ -1,14 +1,17 @@
 <?php
+//error_reporting(0);
+header('Content-Type: application/json; charset=utf-8');
+
+
 function conectar()
 {
     $servername = 'localhost';
     $username = 'root';
-    $password = 'admin';
-    $dbname = 'webti';
+    $password = 'Art.DB25';
+    $dbname = 'martianware';
 
     return new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 }
-//conectar();
 
 function cadastra_usuario($name, $password)
 {
@@ -67,8 +70,14 @@ function list_usuario() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-echo"<pre>";
-print_r(var_dump(list_usuario()));
-echo("</pre");
+//echo"<pre>";
+//print_r(var_dump(list_usuario()));
+//echo("</pre");
+
+try {
+    conectar();
+} catch(Exception $e) {
+    echo json_encode(['code' => 0, 'message' => 'Erro ao conectar no banco de dados, corrija as credenciais!']);
+}
 
 ?>

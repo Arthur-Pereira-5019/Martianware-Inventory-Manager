@@ -1,0 +1,6 @@
+0 -> Conexão no Banco de Dados
+1 -> Usuário não encontrado 
+2 -> Login inválido
+3 -> Logou com sucesso!
+4 -> Cadastrado com sucesso!
+5 -> Já logado!
