@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-//error_reporting(0);
+error_reporting(0);
 session_start();
 
-require_once 'banco.php';
+require_once 'usuarioRepository.php';
 require_once 'autenticacao.php';
 
 function cadastrar($name, $password)

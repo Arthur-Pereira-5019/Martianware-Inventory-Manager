@@ -36,3 +36,8 @@ function logar($name, $password, $print)
         }
     }
 }
+
+function logout() {
+    session_destroy();
+    echo json_encode(['status' => 7, 'message' => 'Deslogado com sucesso!']);
+}

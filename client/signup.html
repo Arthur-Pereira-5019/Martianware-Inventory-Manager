@@ -5,106 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Martianware</title>
+    <link rel="stylesheet" href="styles/signup.css">
 </head>
-<style>
-    html,
-    body {
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: black;
-    }
-
-    * {
-        color: lime;
-        font-size: 16px;
-        font-family: sans-serif;
-    }
-
-    #container {
-        width: fit-content;
-        position: relative;
-        transform: translateX(-50%);
-        left: 50%;
-        display: flex;
-    }
-
-    #container_geral {
-        width: 65vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #second_container {
-        width: 5vw;
-    }
-
-    #hide_password {
-        width: 2vw;
-        aspect-ratio: 1/1;
-    }
-
-    #seye {
-        width: 100%;
-        aspect-ratio: 1/1;
-    }
-
-    #password_container {
-        display: flex;
-        gap: 2vh;
-    }
-
-    #password {
-        height: fit-content;
-    }
-
-    #container_info {
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-    }
-
-    h1 {
-        font-size: 4vw;
-        margin-bottom: 0px;
-    }
-
-    h2 {
-        font-size: 2vw;
-    }
-
-    input {
-        margin-left: 2px;
-        border: 1px solid lime;
-        background-color: rgb(109, 109, 109);
-    }
-
-    button {
-        width: 40%;
-        border: 1px solid rgb(0, 161, 0);
-        background-color: rgb(58, 58, 58);
-        color: rgb(0, 161, 0);
-        cursor: pointer;
-        left: 50%;
-        position: relative;
-        transform: translateX(-50%);
-    }
-
-    button:hover {
-        border: 1px solid rgb(0, 255, 0);
-        background-color: rgb(189, 189, 189);
-        color: rgb(0, 255, 0);
-    }
-
-    #return {
-        width: 9vw;
-        position: relative;
-        top: 4vh;
-        left: 10vw
-    }
-</style>
 
 <body>
     <div id="container">
@@ -132,32 +34,8 @@
             <button id="return">Voltar</button>
         </div>
     </div>
-    <script>
-        passwordField = document.querySelector("#password")
-        nameField = document.querySelector("#nome")
+    <script src="logic/signup.js"></script>
 
-        btnReturn = document.querySelector("#return")
-        btnSignup = document.querySelector("#signup")
-
-        btnReturn.addEventListener("click", function () {
-            window.location.pathname = "client/signup.html"
-        })
-        btnSignup.addEventListener("click", function () {
-            requestBody = {
-                "type":"cadastrar",
-                "name": nameField.value,
-                "password": passwordField.value
-            }
-            fetch("http://localhost:80/server/controller.php", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody),
-            }).then(res => { return res.text()
-            }).then(data => console.log(data))
-        })
-    </script>
 
 
 </body>
