@@ -26,17 +26,18 @@ switch ($query->type) {
             echo json_encode(['status' => 6, 'message' => "Usuário não logado!"]);
         }
         break;
+    default:
+        if (isset($_SESSION['username'])) {
+            switch ($query->type) {
+                case "novo_produto":
+                    cadastrar($query->name, $query->password);
+                    break;
+                case "logout":
+                    logout();
+                    break;
+                default:
+                    echo json_encode(['status' => 8, 'message' => "Unknown endpoint or not allowed!"]);
+                    break;
+            }
+        }
 }
-
-if (isset($_SESSION['name'])) {
-    switch ($query->type) {
-        case "novo_produto":
-            cadastrar($query->name, $query->password);
-            break;
-        case "logout":
-            logout();
-            break;
-    }
-}
-
-echo json_encode(['status' => 8, 'message' => "Unknown endpoint or not allowed!"]);

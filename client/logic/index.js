@@ -15,8 +15,6 @@ fetch("http://localhost:80/server/controller.php", {
         window.location.pathname = "client/produtos.html"
     }
 })
-console.log("hi")
-
 passwordField = document.querySelector("#password")
 nameField = document.querySelector("#nome")
 

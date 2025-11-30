@@ -1,3 +1,5 @@
+
+
 const sair = document.querySelector("#btnSair")
 
 sair.addEventListener("click", function() {
@@ -16,7 +18,7 @@ sair.addEventListener("click", function() {
         data => {
             if(data.status == 7) {
                 alert(data.message)
-                window.location.pathname = ""
+                window.location.pathname = "/client"
             }
         }
     )

@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-//error_reporting(0);
+error_reporting(0);
 function logar($name, $password, $print)
 {
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
